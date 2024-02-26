@@ -1,2 +1,11 @@
-# Compiladores
- Creacion de un compilador en python
+# Compilador - Python
+
+Compilador creado para el curso de Compiladores de la universidad cooperativa de colombia
+
+## Analizador Lexico
+### Primer Entregable
+
+ Estado: [Completado]("https:://#")
+## Analizador Sintactico
+
+Estado: [PorAsignar] ("https:://#")
