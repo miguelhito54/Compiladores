@@ -5,7 +5,7 @@ Compilador creado para el curso de Compiladores de la universidad cooperativa de
 ## Analizador Lexico
 ### Primer Entregable
 
- Estado: [Completado]("https:://#")
+Estado: Completado
 ## Analizador Sintactico
 
-Estado: [PorAsignar] ("https:://#")
+Estado: PorAsignar
