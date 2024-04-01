@@ -1,0 +1,256 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DIVISION
+    LLAVE_DERECHA
+    LLAVE_IZQUIERDA
+    MULTIPLICACION
+    OPERADOR_ASIGNACION
+    OPERADOR_SUMA
+    PARENTESIS_DERECHO
+    PARENTESIS_IZQUIERDO
+    RESTA
+    STRING
+    SUMA
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statement statements
+Rule 3     statements -> <empty>
+Rule 4     statement -> declaration
+Rule 5     statement -> assignment
+Rule 6     statement -> print
+Rule 7     declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+Rule 8     assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+Rule 9     expression -> IDENTIFICADOR
+Rule 10    print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+Rule 11    expression -> NUMERO
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 8
+DIVISION             : 
+IDENTIFICADOR        : 7 8 9
+LLAVE_DERECHA        : 
+LLAVE_IZQUIERDA      : 
+MENOR_MENOR          : 10
+MULTIPLICACION       : 
+NUMERO               : 11
+OPERADOR_ASIGNACION  : 
+OPERADOR_SUMA        : 
+PALABRA_RESERVADA    : 7 10
+PARENTESIS_DERECHO   : 
+PARENTESIS_IZQUIERDO : 
+PUNTO_COMA           : 7 8 10
+RESTA                : 
+STRING               : 
+SUMA                 : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+declaration          : 4
+expression           : 8 10
+print                : 6
+program              : 0
+statement            : 2
+statements           : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statement statements
+    (3) statements -> .
+    (4) statement -> . declaration
+    (5) statement -> . assignment
+    (6) statement -> . print
+    (7) declaration -> . PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+    (8) assignment -> . IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+    (10) print -> . PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+
+    $end            reduce using rule 3 (statements -> .)
+    PALABRA_RESERVADA shift and go to state 7
+    IDENTIFICADOR   shift and go to state 8
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    assignment                     shift and go to state 5
+    print                          shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+
+    $end            reduce using rule 1 (program -> statements .)
+
+
+state 3
+
+    (2) statements -> statement . statements
+    (2) statements -> . statement statements
+    (3) statements -> .
+    (4) statement -> . declaration
+    (5) statement -> . assignment
+    (6) statement -> . print
+    (7) declaration -> . PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+    (8) assignment -> . IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+    (10) print -> . PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+
+    $end            reduce using rule 3 (statements -> .)
+    PALABRA_RESERVADA shift and go to state 7
+    IDENTIFICADOR   shift and go to state 8
+
+    statement                      shift and go to state 3
+    statements                     shift and go to state 9
+    declaration                    shift and go to state 4
+    assignment                     shift and go to state 5
+    print                          shift and go to state 6
+
+state 4
+
+    (4) statement -> declaration .
+
+    PALABRA_RESERVADA reduce using rule 4 (statement -> declaration .)
+    IDENTIFICADOR   reduce using rule 4 (statement -> declaration .)
+    $end            reduce using rule 4 (statement -> declaration .)
+
+
+state 5
+
+    (5) statement -> assignment .
+
+    PALABRA_RESERVADA reduce using rule 5 (statement -> assignment .)
+    IDENTIFICADOR   reduce using rule 5 (statement -> assignment .)
+    $end            reduce using rule 5 (statement -> assignment .)
+
+
+state 6
+
+    (6) statement -> print .
+
+    PALABRA_RESERVADA reduce using rule 6 (statement -> print .)
+    IDENTIFICADOR   reduce using rule 6 (statement -> print .)
+    $end            reduce using rule 6 (statement -> print .)
+
+
+state 7
+
+    (7) declaration -> PALABRA_RESERVADA . IDENTIFICADOR PUNTO_COMA
+    (10) print -> PALABRA_RESERVADA . MENOR_MENOR expression PUNTO_COMA
+
+    IDENTIFICADOR   shift and go to state 10
+    MENOR_MENOR     shift and go to state 11
+
+
+state 8
+
+    (8) assignment -> IDENTIFICADOR . ASIGNACION expression PUNTO_COMA
+
+    ASIGNACION      shift and go to state 12
+
+
+state 9
+
+    (2) statements -> statement statements .
+
+    $end            reduce using rule 2 (statements -> statement statements .)
+
+
+state 10
+
+    (7) declaration -> PALABRA_RESERVADA IDENTIFICADOR . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 13
+
+
+state 11
+
+    (10) print -> PALABRA_RESERVADA MENOR_MENOR . expression PUNTO_COMA
+    (9) expression -> . IDENTIFICADOR
+    (11) expression -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+
+    expression                     shift and go to state 14
+
+state 12
+
+    (8) assignment -> IDENTIFICADOR ASIGNACION . expression PUNTO_COMA
+    (9) expression -> . IDENTIFICADOR
+    (11) expression -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+
+    expression                     shift and go to state 17
+
+state 13
+
+    (7) declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 7 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 7 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+    $end            reduce using rule 7 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+
+
+state 14
+
+    (10) print -> PALABRA_RESERVADA MENOR_MENOR expression . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 18
+
+
+state 15
+
+    (9) expression -> IDENTIFICADOR .
+
+    PUNTO_COMA      reduce using rule 9 (expression -> IDENTIFICADOR .)
+
+
+state 16
+
+    (11) expression -> NUMERO .
+
+    PUNTO_COMA      reduce using rule 11 (expression -> NUMERO .)
+
+
+state 17
+
+    (8) assignment -> IDENTIFICADOR ASIGNACION expression . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 19
+
+
+state 18
+
+    (10) print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 10 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 10 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+    $end            reduce using rule 10 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+
+
+state 19
+
+    (8) assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 8 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 8 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+    $end            reduce using rule 8 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+
