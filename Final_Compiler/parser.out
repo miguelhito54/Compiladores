@@ -1,0 +1,69 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CONSTANTE
+    DIVISION
+    LLAVE_DERECHA
+    LLAVE_IZQUIERDA
+    MULTIPLICACION
+    OPERADOR_ASIGNACION
+    OPERADOR_SUMA
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statement statements
+Rule 3     statements -> <empty>
+Rule 4     statement -> declaration
+Rule 5     statement -> assignment
+Rule 6     statement -> print
+Rule 7     expression -> expression SUMA expression
+Rule 8     expression -> expression RESTA expression
+Rule 9     assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+Rule 10    expression -> IDENTIFICADOR
+Rule 11    print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+Rule 12    expression -> NUMERO
+Rule 13    expression -> STRING
+Rule 14    expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+Rule 15    expression -> expression MAYORQUE expression
+Rule 16    expression -> expression MENORQUE expression
+Rule 17    preprocessor -> PREPROCESSOR
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 9
+CONSTANTE            : 
+DIVISION             : 
+IDENTIFICADOR        : 9 10
+LLAVE_DERECHA        : 
+LLAVE_IZQUIERDA      : 
+MAYORQUE             : 15
+MENORQUE             : 16
+MENOR_MENOR          : 11
+MULTIPLICACION       : 
+NUMERO               : 12
+OPERADOR_ASIGNACION  : 
+OPERADOR_SUMA        : 
+PALABRA_RESERVADA    : 11
+PARENTESIS_DERECHO   : 14
+PARENTESIS_IZQUIERDO : 14
+PREPROCESSOR         : 17
+PUNTO_COMA           : 9 11
+RESTA                : 8
+STRING               : 13
+SUMA                 : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+declaration          : 4
+expression           : 7 7 8 8 9 11 14 15 15 16 16
+preprocessor         : 
+print                : 6
+program              : 0
+statement            : 2
+statements           : 1 2
+

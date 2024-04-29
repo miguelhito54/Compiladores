@@ -1,12 +1,4 @@
 import ply.lex as lex
-# Compiladores UCC
-# Tokens list
-# Identifiers
-# Keywords / Reserved Words
-# Constants
-# Strings
-# Special Symbols
-# Operators
 
 tokens = (
     "PUNTO_COMA",
@@ -25,7 +17,14 @@ tokens = (
     "RESTA",
     "MULTIPLICACION",
     "DIVISION",
-    "MENOR_MENOR"
+    "MENOR_MENOR",
+    "CONSTANTE",
+    "MENORQUE",
+    "MAYORQUE",
+    "PREPROCESSOR",
+    "CONSTANTE",
+    
+
 )
 
 
@@ -56,8 +55,16 @@ def t_NUMERO(t):
     t.value = int(t.value)
     return t
 
+def t_MAYORQUE(t):
+    r'>'
+    return t
+
+def t_MENORQUE(t):
+    r'<'
+    return t
+
 def t_PALABRA_RESERVADA(t):
-    r'for|if|else|while|do|break|continue|return|switch|case|default|try|catch|char|class|const|delete|auto|else|friend|float|long|new|operator|private|protected|public|short|signed|sizeof|static|struct|template|this|throw|union|unsigned|virtual|void|volatile|goto|enum|extern|inline|register|typedef|typeid|using|namespace|std|cin|cout|endl|int'
+    r'main|for|if|else|while|do|break|continue|return|switch|case|default|try|catch|char|class|const|delete|auto|else|friend|float|long|new|operator|private|protected|public|short|signed|sizeof|static|struct|template|this|throw|union|unsigned|virtual|void|volatile|goto|enum|extern|inline|register|typedef|typeid|using|namespace|std|cin|cout|endl|int'
     return t
 
 def t_IDENTIFICADOR(t):
@@ -89,8 +96,17 @@ def t_MENOR_MENOR(t):
     return t
 
 def t_STRING(t):
-    r'\"[a-zA-Z_][a-zA-Z0-9_]*\"'
+    r'\".*?\"'
     return t    
+
+def t_PREPROCESSOR(t):
+    r'\#.*'
+    return t
+
+def t_CONSTANTE(t):
+    r'[A-Z_][A-Z0-9_]*'
+    return t
+
 
 def t_error(t):
     print("Error léxico: '%s'" % t.value[0])
@@ -99,15 +115,9 @@ def t_error(t):
 
 lexer = lex.lex()
 
-codigo = """
-int main() {
-    int a = 10;
-    int b = 20;
-    int c = a + b;
-    cout << c << endl;
-    cout << "Hola mundo" << endl;
-}
-"""
+
+with open('testinput.cpp', 'r') as file:
+    codigo = file.read()
 
 lexer.input(codigo)
 while True:

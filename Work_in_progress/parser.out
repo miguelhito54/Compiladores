@@ -1,0 +1,556 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CONSTANTE
+    DIVISION
+    LLAVE_DERECHA
+    LLAVE_IZQUIERDA
+    MULTIPLICACION
+    OPERADOR_ASIGNACION
+    OPERADOR_SUMA
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statement statements
+Rule 3     statements -> <empty>
+Rule 4     statement -> declaration
+Rule 5     statement -> assignment
+Rule 6     statement -> print
+Rule 7     expression -> expression SUMA expression
+Rule 8     expression -> expression RESTA expression
+Rule 9     declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+Rule 10    assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+Rule 11    expression -> IDENTIFICADOR
+Rule 12    print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+Rule 13    expression -> NUMERO
+Rule 14    expression -> STRING
+Rule 15    expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+Rule 16    expression -> expression MAYORQUE expression
+Rule 17    expression -> expression MENORQUE expression
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 10
+CONSTANTE            : 
+DIVISION             : 
+IDENTIFICADOR        : 9 10 11
+LLAVE_DERECHA        : 
+LLAVE_IZQUIERDA      : 
+MAYORQUE             : 16
+MENORQUE             : 17
+MENOR_MENOR          : 12
+MULTIPLICACION       : 
+NUMERO               : 13
+OPERADOR_ASIGNACION  : 
+OPERADOR_SUMA        : 
+PALABRA_RESERVADA    : 9 12
+PARENTESIS_DERECHO   : 15
+PARENTESIS_IZQUIERDO : 15
+PUNTO_COMA           : 9 10 12
+RESTA                : 8
+STRING               : 14
+SUMA                 : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+declaration          : 4
+expression           : 7 7 8 8 10 12 15 16 16 17 17
+print                : 6
+program              : 0
+statement            : 2
+statements           : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statement statements
+    (3) statements -> .
+    (4) statement -> . declaration
+    (5) statement -> . assignment
+    (6) statement -> . print
+    (9) declaration -> . PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+    (10) assignment -> . IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+    (12) print -> . PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+
+    $end            reduce using rule 3 (statements -> .)
+    PALABRA_RESERVADA shift and go to state 7
+    IDENTIFICADOR   shift and go to state 8
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    assignment                     shift and go to state 5
+    print                          shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+
+    $end            reduce using rule 1 (program -> statements .)
+
+
+state 3
+
+    (2) statements -> statement . statements
+    (2) statements -> . statement statements
+    (3) statements -> .
+    (4) statement -> . declaration
+    (5) statement -> . assignment
+    (6) statement -> . print
+    (9) declaration -> . PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA
+    (10) assignment -> . IDENTIFICADOR ASIGNACION expression PUNTO_COMA
+    (12) print -> . PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA
+
+    $end            reduce using rule 3 (statements -> .)
+    PALABRA_RESERVADA shift and go to state 7
+    IDENTIFICADOR   shift and go to state 8
+
+    statement                      shift and go to state 3
+    statements                     shift and go to state 9
+    declaration                    shift and go to state 4
+    assignment                     shift and go to state 5
+    print                          shift and go to state 6
+
+state 4
+
+    (4) statement -> declaration .
+
+    PALABRA_RESERVADA reduce using rule 4 (statement -> declaration .)
+    IDENTIFICADOR   reduce using rule 4 (statement -> declaration .)
+    $end            reduce using rule 4 (statement -> declaration .)
+
+
+state 5
+
+    (5) statement -> assignment .
+
+    PALABRA_RESERVADA reduce using rule 5 (statement -> assignment .)
+    IDENTIFICADOR   reduce using rule 5 (statement -> assignment .)
+    $end            reduce using rule 5 (statement -> assignment .)
+
+
+state 6
+
+    (6) statement -> print .
+
+    PALABRA_RESERVADA reduce using rule 6 (statement -> print .)
+    IDENTIFICADOR   reduce using rule 6 (statement -> print .)
+    $end            reduce using rule 6 (statement -> print .)
+
+
+state 7
+
+    (9) declaration -> PALABRA_RESERVADA . IDENTIFICADOR PUNTO_COMA
+    (12) print -> PALABRA_RESERVADA . MENOR_MENOR expression PUNTO_COMA
+
+    IDENTIFICADOR   shift and go to state 10
+    MENOR_MENOR     shift and go to state 11
+
+
+state 8
+
+    (10) assignment -> IDENTIFICADOR . ASIGNACION expression PUNTO_COMA
+
+    ASIGNACION      shift and go to state 12
+
+
+state 9
+
+    (2) statements -> statement statements .
+
+    $end            reduce using rule 2 (statements -> statement statements .)
+
+
+state 10
+
+    (9) declaration -> PALABRA_RESERVADA IDENTIFICADOR . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 13
+
+
+state 11
+
+    (12) print -> PALABRA_RESERVADA MENOR_MENOR . expression PUNTO_COMA
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 14
+
+state 12
+
+    (10) assignment -> IDENTIFICADOR ASIGNACION . expression PUNTO_COMA
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 19
+
+state 13
+
+    (9) declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 9 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 9 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+    $end            reduce using rule 9 (declaration -> PALABRA_RESERVADA IDENTIFICADOR PUNTO_COMA .)
+
+
+state 14
+
+    (12) print -> PALABRA_RESERVADA MENOR_MENOR expression . PUNTO_COMA
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+    PUNTO_COMA      shift and go to state 20
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+
+state 15
+
+    (11) expression -> IDENTIFICADOR .
+
+    PUNTO_COMA      reduce using rule 11 (expression -> IDENTIFICADOR .)
+    SUMA            reduce using rule 11 (expression -> IDENTIFICADOR .)
+    RESTA           reduce using rule 11 (expression -> IDENTIFICADOR .)
+    MAYORQUE        reduce using rule 11 (expression -> IDENTIFICADOR .)
+    MENORQUE        reduce using rule 11 (expression -> IDENTIFICADOR .)
+    PARENTESIS_DERECHO reduce using rule 11 (expression -> IDENTIFICADOR .)
+
+
+state 16
+
+    (13) expression -> NUMERO .
+
+    PUNTO_COMA      reduce using rule 13 (expression -> NUMERO .)
+    SUMA            reduce using rule 13 (expression -> NUMERO .)
+    RESTA           reduce using rule 13 (expression -> NUMERO .)
+    MAYORQUE        reduce using rule 13 (expression -> NUMERO .)
+    MENORQUE        reduce using rule 13 (expression -> NUMERO .)
+    PARENTESIS_DERECHO reduce using rule 13 (expression -> NUMERO .)
+
+
+state 17
+
+    (14) expression -> STRING .
+
+    PUNTO_COMA      reduce using rule 14 (expression -> STRING .)
+    SUMA            reduce using rule 14 (expression -> STRING .)
+    RESTA           reduce using rule 14 (expression -> STRING .)
+    MAYORQUE        reduce using rule 14 (expression -> STRING .)
+    MENORQUE        reduce using rule 14 (expression -> STRING .)
+    PARENTESIS_DERECHO reduce using rule 14 (expression -> STRING .)
+
+
+state 18
+
+    (15) expression -> PARENTESIS_IZQUIERDO . expression PARENTESIS_DERECHO
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 25
+
+state 19
+
+    (10) assignment -> IDENTIFICADOR ASIGNACION expression . PUNTO_COMA
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+    PUNTO_COMA      shift and go to state 26
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+
+state 20
+
+    (12) print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 12 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 12 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+    $end            reduce using rule 12 (print -> PALABRA_RESERVADA MENOR_MENOR expression PUNTO_COMA .)
+
+
+state 21
+
+    (7) expression -> expression SUMA . expression
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 27
+
+state 22
+
+    (8) expression -> expression RESTA . expression
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 28
+
+state 23
+
+    (16) expression -> expression MAYORQUE . expression
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 29
+
+state 24
+
+    (17) expression -> expression MENORQUE . expression
+    (7) expression -> . expression SUMA expression
+    (8) expression -> . expression RESTA expression
+    (11) expression -> . IDENTIFICADOR
+    (13) expression -> . NUMERO
+    (14) expression -> . STRING
+    (15) expression -> . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO
+    (16) expression -> . expression MAYORQUE expression
+    (17) expression -> . expression MENORQUE expression
+
+    IDENTIFICADOR   shift and go to state 15
+    NUMERO          shift and go to state 16
+    STRING          shift and go to state 17
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+    expression                     shift and go to state 30
+
+state 25
+
+    (15) expression -> PARENTESIS_IZQUIERDO expression . PARENTESIS_DERECHO
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+    PARENTESIS_DERECHO shift and go to state 31
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+
+state 26
+
+    (10) assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .
+
+    PALABRA_RESERVADA reduce using rule 10 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+    IDENTIFICADOR   reduce using rule 10 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+    $end            reduce using rule 10 (assignment -> IDENTIFICADOR ASIGNACION expression PUNTO_COMA .)
+
+
+state 27
+
+    (7) expression -> expression SUMA expression .
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+    PUNTO_COMA      reduce using rule 7 (expression -> expression SUMA expression .)
+    PARENTESIS_DERECHO reduce using rule 7 (expression -> expression SUMA expression .)
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+  ! SUMA            [ reduce using rule 7 (expression -> expression SUMA expression .) ]
+  ! RESTA           [ reduce using rule 7 (expression -> expression SUMA expression .) ]
+  ! MAYORQUE        [ reduce using rule 7 (expression -> expression SUMA expression .) ]
+  ! MENORQUE        [ reduce using rule 7 (expression -> expression SUMA expression .) ]
+
+
+state 28
+
+    (8) expression -> expression RESTA expression .
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+    PUNTO_COMA      reduce using rule 8 (expression -> expression RESTA expression .)
+    PARENTESIS_DERECHO reduce using rule 8 (expression -> expression RESTA expression .)
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+  ! SUMA            [ reduce using rule 8 (expression -> expression RESTA expression .) ]
+  ! RESTA           [ reduce using rule 8 (expression -> expression RESTA expression .) ]
+  ! MAYORQUE        [ reduce using rule 8 (expression -> expression RESTA expression .) ]
+  ! MENORQUE        [ reduce using rule 8 (expression -> expression RESTA expression .) ]
+
+
+state 29
+
+    (16) expression -> expression MAYORQUE expression .
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+    PUNTO_COMA      reduce using rule 16 (expression -> expression MAYORQUE expression .)
+    PARENTESIS_DERECHO reduce using rule 16 (expression -> expression MAYORQUE expression .)
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+  ! SUMA            [ reduce using rule 16 (expression -> expression MAYORQUE expression .) ]
+  ! RESTA           [ reduce using rule 16 (expression -> expression MAYORQUE expression .) ]
+  ! MAYORQUE        [ reduce using rule 16 (expression -> expression MAYORQUE expression .) ]
+  ! MENORQUE        [ reduce using rule 16 (expression -> expression MAYORQUE expression .) ]
+
+
+state 30
+
+    (17) expression -> expression MENORQUE expression .
+    (7) expression -> expression . SUMA expression
+    (8) expression -> expression . RESTA expression
+    (16) expression -> expression . MAYORQUE expression
+    (17) expression -> expression . MENORQUE expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MAYORQUE resolved as shift
+  ! shift/reduce conflict for MENORQUE resolved as shift
+    PUNTO_COMA      reduce using rule 17 (expression -> expression MENORQUE expression .)
+    PARENTESIS_DERECHO reduce using rule 17 (expression -> expression MENORQUE expression .)
+    SUMA            shift and go to state 21
+    RESTA           shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORQUE        shift and go to state 24
+
+  ! SUMA            [ reduce using rule 17 (expression -> expression MENORQUE expression .) ]
+  ! RESTA           [ reduce using rule 17 (expression -> expression MENORQUE expression .) ]
+  ! MAYORQUE        [ reduce using rule 17 (expression -> expression MENORQUE expression .) ]
+  ! MENORQUE        [ reduce using rule 17 (expression -> expression MENORQUE expression .) ]
+
+
+state 31
+
+    (15) expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .
+
+    PUNTO_COMA      reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+    SUMA            reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+    RESTA           reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+    MAYORQUE        reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+    MENORQUE        reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+    PARENTESIS_DERECHO reduce using rule 15 (expression -> PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SUMA in state 27 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 27 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 27 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 27 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 28 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 28 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 28 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 28 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 29 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 29 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 29 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 29 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 30 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 30 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 30 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 30 resolved as shift
