@@ -8,4 +8,8 @@ Compilador creado para el curso de Compiladores de la universidad cooperativa de
 Estado: Completado
 ## Analizador Sintactico
 
-Estado: PorAsignar
+Estado: Completado
+
+## Analizador Semantico 
+
+Estado: En proceso
